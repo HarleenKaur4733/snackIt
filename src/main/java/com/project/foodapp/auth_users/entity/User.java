@@ -3,7 +3,8 @@ package com.project.foodapp.auth_users.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
+import com.project.foodapp.cart.entity.Cart;
+import com.project.foodapp.order.entity.Order;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -49,7 +51,7 @@ public class User {
 
     private boolean isActive;
 
-    @ManyToAny(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
