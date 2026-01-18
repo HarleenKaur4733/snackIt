@@ -1,17 +1,13 @@
-package com.project.foodapp.order.entity;
+package com.project.foodapp.payment.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
-
-import org.springframework.cglib.core.Local;
 
 import com.project.foodapp.auth_users.entity.User;
-import com.project.foodapp.enums.OrderStatus;
+import com.project.foodapp.enums.PaymentGateway;
 import com.project.foodapp.enums.PaymentStatus;
-import com.project.foodapp.payment.entity.Payment;
+import com.project.foodapp.order.entity.Order;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,7 +16,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,29 +28,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "orders")
-public class Order {
+@Table(name = "payments")
+public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    private LocalDateTime orderDate;
-
-    private BigDecimal totalAmount;
+    private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-
-    @Enumerated(EnumType.STRING) // store enum as string in DB, not as ordinal (0,1,2...)
     private PaymentStatus paymentStatus;
 
-    @OneToOne(mappedBy = "order")
-    private Payment payment;
+    private String transactionId;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    @Enumerated(EnumType.STRING)
+    private PaymentGateway paymentGateway;
+
+    private String failureReason;
+
+    private LocalDateTime paymentData;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user; // User who made the payment
 }

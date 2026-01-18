@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.project.foodapp.cart.entity.Cart;
 import com.project.foodapp.order.entity.Order;
+import com.project.foodapp.payment.entity.Payment;
+import com.project.foodapp.review.entity.Review;
+import com.project.foodapp.role.entity.Role;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

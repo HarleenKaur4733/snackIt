@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.project.foodapp.category.entity.Category;
 import com.project.foodapp.order.entity.OrderItem;
+import com.project.foodapp.review.entity.Review;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
