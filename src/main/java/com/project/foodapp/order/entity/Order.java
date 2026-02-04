@@ -48,7 +48,7 @@ public class Order {
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus orderStatus;
 
     @Enumerated(EnumType.STRING) // store enum as string in DB, not as ordinal (0,1,2...)
     private PaymentStatus paymentStatus;
