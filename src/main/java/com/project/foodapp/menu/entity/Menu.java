@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "notifications")
+@Table(name = "menu")
 public class Menu {
 
     @Id
