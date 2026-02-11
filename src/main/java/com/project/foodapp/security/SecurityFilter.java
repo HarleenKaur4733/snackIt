@@ -25,35 +25,36 @@ import com.project.foodapp.exceptions.CustomAuthenticationEntryPoint;
 @RequiredArgsConstructor
 public class SecurityFilter {
 
-    private final AuthFilter authFilter;
-    private final CustomAccessDenialHandler customAccessDenialHandler;
-    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+        private final AuthFilter authFilter;
+        private final CustomAccessDenialHandler customAccessDenialHandler;
+        private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
-                .exceptionHandling(ex -> ex.accessDeniedHandler(customAccessDenialHandler)
-                        .authenticationEntryPoint(customAuthenticationEntryPoint))
-                .authorizeHttpRequests(req -> req
-                        .requestMatchers("/api/auth/**", "/api/categories/**", "/api/menu/**", "/api/reviews/**",
-                                "/api/upload/**")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(mag -> mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+                httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                                .cors(Customizer.withDefaults())
+                                .exceptionHandling(ex -> ex.accessDeniedHandler(customAccessDenialHandler)
+                                                .authenticationEntryPoint(customAuthenticationEntryPoint))
+                                .authorizeHttpRequests(req -> req
+                                                .requestMatchers("/api/auth/**", "/api/categories/**", "/api/menu/**",
+                                                                "/api/reviews/**",
+                                                                "/api/upload/**")
+                                                .permitAll()
+                                                .anyRequest().authenticated())
+                                .sessionManagement(mag -> mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return httpSecurity.build();
-    }
+                return httpSecurity.build();
+        }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+                        throws Exception {
+                return authenticationConfiguration.getAuthenticationManager();
+        }
 }
