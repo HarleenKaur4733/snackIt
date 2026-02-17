@@ -27,7 +27,7 @@ import com.project.foodapp.exceptions.CustomAuthenticationEntryPoint;
 public class AuthFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
-    private final CustomUserDetailService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Override

@@ -18,6 +18,7 @@ public class UserDTO {
 
     private Long id;
     private String name;
+    private String email;
     private String phoneNumber;
     private String profileUrl;
 
@@ -31,5 +32,5 @@ public class UserDTO {
     private String address;
 
     private List<RoleDTO> roles;
-    private MultipartFile imagFile;
+    private MultipartFile imageFile;
 }
