@@ -35,7 +35,7 @@ public class Cart {
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> carItems;
+    private List<CartItem> cartItems;
     private String promoCode;
 
 }

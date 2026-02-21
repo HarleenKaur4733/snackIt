@@ -37,6 +37,6 @@ public class CartItem {
     private Menu menu;
     private int quantity;
     private BigDecimal pricePerUnit;
-    private BigDecimal totalPrice;
+    private BigDecimal subtotal;
 
 }
