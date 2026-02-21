@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.project.foodapp.menu.dtos.MenuDTO;
 
 import lombok.Data;
 
@@ -17,7 +18,7 @@ public class OrderItemDTO {
     private int quantity;
 
     private Long menuId;
-
+    private MenuDTO menu;
     private BigDecimal pricePerUnit;
 
     private BigDecimal subtotal;
