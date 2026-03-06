@@ -19,7 +19,7 @@ public class ReviewDTO {
     private Long id;
     private Long menuId;
     private Long orderId;
-
+    private String userName;
     @NotNull(message = "Rating is mandatory")
     @Min(value = 1, message = "Rating must be at least 1")
     @Max(value = 10, message = "Rating must be at most 10")
