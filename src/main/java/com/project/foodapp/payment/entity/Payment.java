@@ -51,7 +51,7 @@ public class Payment {
 
     private String failureReason;
 
-    private LocalDateTime paymentData;
+    private LocalDateTime paymentDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
